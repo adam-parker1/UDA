@@ -1,0 +1,22 @@
+---
+name: UDA image ghrc build
+
+on:
+  push:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to GitHub Container Registry
+        if: steps.changes.outputs.build_container == 'true' && github.ref == 'refs/heads/main'
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: adam-parker1
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build the UDA Docker image
+        run: |
+          cd docker/ubuntu_22.10
+          docker build . -t ghcr.io/adam-parker1/UDA:latest
+          docker push ghcr.io/adam-parker1/UDA:latest
