@@ -7,14 +7,22 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
     steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
       - name: Login to GitHub Container Registry
-        if: steps.changes.outputs.build_container == 'true' && github.ref == 'refs/heads/main'
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
           username: adam-parker1
           password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build the UDA Docker image
         run: |
           cd docker/ubuntu_22.10
