@@ -1,8 +1,8 @@
-FROM ubuntu:22.10
+FROM ubuntu:22.04
 
 SHELL ["/bin/bash", "-c"]
 
-RUN apt-get update && apt-get install -y \
+RUN apt update && apt install -y \
     git \
     libboost-dev \
     libboost-program-options-dev \
