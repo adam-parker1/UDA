@@ -19,7 +19,7 @@ RUN apt update && apt install -y \
     python3-pip \
     python3-venv
 
-COPY . /uda
+COPY ../.. /uda
 
 RUN cd /uda && \
     cmake -G Ninja -B build \
