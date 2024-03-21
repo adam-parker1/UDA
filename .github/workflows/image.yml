@@ -25,5 +25,5 @@ jobs:
 
       - name: Build the UDA Docker image
         run: |
-          docker build ./docker/ubuntu_22.10 -t ghcr.io/adam-parker1/uda:latest
+          docker build -f ./docker/ubuntu_22.10/Dockerfile . -t ghcr.io/adam-parker1/uda:latest
           docker push ghcr.io/adam-parker1/uda:latest
